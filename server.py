@@ -42,6 +42,7 @@ class SocketServer():
                 t = threading.Thread(target=self.conn_client, args=(client_socket, address))
                 t.setDaemon(True)
                 t.start()
+                print(threading.active_count())
 
     # クライアントごとにThread起動する関数
     def conn_client(self, client_socket, address):
