@@ -43,7 +43,7 @@ class SocketServer():
                 # クライアントからデータ受信
                 rcv_data = client_socket.recv(DATESIZE)
                 if rcv_data :
-                    if rcv_data == "1000000":
+                    if rcv_data == 1000000:
                         client_socket.send(rcv_data)
 
                         GPIO.setmode(GPIO.BCM)
@@ -76,7 +76,7 @@ class SocketServer():
                                 time.sleep(1)
                         p.stop()
                         GPIO.cleanup()
-                        
+
                         print('[{0}] recv date : {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), rcv_data.decode('utf-8')) )                        
                 else:
                     break
