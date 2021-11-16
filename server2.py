@@ -51,11 +51,11 @@ class SocketServer():
 
                         p = GPIO.PWM(pin,1)
                         #for i in range(3):
-                            p.start(50)
-                            p.ChangeFrequency(622.254)
-                            time.sleep(0.8)
-                            p.stop()
-                            time.sleep(0.1)
+                        p.start(50)
+                        p.ChangeFrequency(622.254)
+                        time.sleep(0.8)
+                        p.stop()
+                        time.sleep(0.1)
                         GPIO.cleanup()
 
                         print('[{0}] recv date : {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), rcv_data.decode('utf-8')) )
@@ -67,13 +67,13 @@ class SocketServer():
                         p = GPIO.PWM(pin,1)
                         p.start(50)
                         #for i in range(5):
-                            p.start(50)
-                            p.ChangeFrequency(493.9)
-                            time.sleep(0.1)
-                            p.ChangeFrequency(196)
-                            time.sleep(0.6)
-                            p.stop()
-                            time.sleep(1)
+                        p.start(50)
+                        p.ChangeFrequency(493.9)
+                        time.sleep(0.1)
+                        p.ChangeFrequency(196)
+                        time.sleep(0.6)
+                        p.stop()
+                        time.sleep(1)
                         p.stop()
                         GPIO.cleanup()
 
