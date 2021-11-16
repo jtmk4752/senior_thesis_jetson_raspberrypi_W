@@ -43,7 +43,7 @@ class SocketServer():
                 # クライアントからデータ受信
                 rcv_data = client_socket.recv(DATESIZE)
                 if rcv_data :
-                    if rcv_data == 1000000:
+                    if rcv_data.decode('utf-8') == "1000000":
                         client_socket.send(rcv_data)
 
                         GPIO.setmode(GPIO.BCM)
