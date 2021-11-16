@@ -79,3 +79,6 @@ class SocketServer():
                     break
 
         print('[{0}] disconnect client -> address : {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), address) )
+
+if __name__ == "__main__":
+    SocketServer(HOST_IP, PORT).run_server()
