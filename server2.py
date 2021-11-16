@@ -50,7 +50,6 @@ class SocketServer():
                         GPIO.setup(pin,GPIO.OUT,initial=GPIO.LOW)
 
                         p = GPIO.PWM(pin,1)
-                        #for i in range(3):
                         p.start(50)
                         p.ChangeFrequency(622.254)
                         time.sleep(0.8)
@@ -66,8 +65,6 @@ class SocketServer():
 
                         p = GPIO.PWM(pin,1)
                         p.start(50)
-                        #for i in range(5):
-                        p.start(50)
                         p.ChangeFrequency(493.9)
                         time.sleep(0.1)
                         p.ChangeFrequency(196)
@@ -82,32 +79,3 @@ class SocketServer():
                     break
 
         print('[{0}] disconnect client -> address : {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), address) )
-
-if __name__ == "__main__":
-    
-    SocketServer(HOST_IP, PORT).run_server()
-
-
-
-
-
-import RPi.GPIO as GPIO
-import time
-
-pin = 27
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(pin,GPIO.OUT,initial=GPIO.LOW)
-
-p = GPIO.PWM(pin,1)
-p.start(50)
-for i in range(5):
-        p.start(50)
-        p.ChangeFrequency(493.9)
-        time.sleep(0.1)
-        p.ChangeFrequency(196)
-        time.sleep(0.6)
-        p.stop()
-        time.sleep(1)
-p.stop()
-GPIO.cleanup()
