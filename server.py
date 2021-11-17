@@ -1,4 +1,3 @@
-from _typeshed import SupportsWrite
 import socket
 import threading
 from datetime import datetime
