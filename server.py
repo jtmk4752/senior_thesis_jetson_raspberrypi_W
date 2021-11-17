@@ -1,3 +1,4 @@
+from _typeshed import SupportsWrite
 import socket
 import threading
 from datetime import datetime
@@ -34,6 +35,30 @@ class SocketServer():
                 t = threading.Thread(target = self.conn_client, args = (client_socket,address))
                 t.setDaemon(True)
                 t.start()
+    
+    def sound(self, switch):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(pin,GPIO.OUT,initial=GPIO.LOW)
+        p = GPIO.PWM(pin,1)
+        p.start(50)
+
+        if switch == True:
+            p.ChangeFrequency(622.254)
+            time.sleep(0.8)
+            p.stop()
+            time.sleep(0.1)
+
+        else:
+            p.ChangeFrequency(493.9)
+            time.sleep(0.1)
+            p.ChangeFrequency(196)
+            time.sleep(0.6)
+            p.stop()
+            time.sleep(1)
+
+        GPIO.cleanup()
+
+
 
     # クライアントごとにThread起動する関数
     def conn_client(self, client_socket, address):
@@ -45,35 +70,11 @@ class SocketServer():
                 if rcv_data :
                     if rcv_data.decode('utf-8') == "1000000":
                         client_socket.send(rcv_data)
-
-                        GPIO.setmode(GPIO.BCM)
-                        GPIO.setup(pin,GPIO.OUT,initial=GPIO.LOW)
-
-                        p = GPIO.PWM(pin,1)
-                        p.start(50)
-                        p.ChangeFrequency(622.254)
-                        time.sleep(0.8)
-                        p.stop()
-                        time.sleep(0.1)
-                        GPIO.cleanup()
-
+                        self.sound(True) #USB connected
                         print('[{0}] recv date : {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), rcv_data.decode('utf-8')) )
                     else:
                         client_socket.send(rcv_data)
-                        GPIO.setmode(GPIO.BCM)
-                        GPIO.setup(pin,GPIO.OUT,initial=GPIO.LOW)
-
-                        p = GPIO.PWM(pin,1)
-                        p.start(50)
-                        p.ChangeFrequency(493.9)
-                        time.sleep(0.1)
-                        p.ChangeFrequency(196)
-                        time.sleep(0.6)
-                        p.stop()
-                        time.sleep(1)
-                        p.stop()
-                        GPIO.cleanup()
-
+                        self.sound(False) #USB disconnected
                         print('[{0}] recv date : {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), rcv_data.decode('utf-8')) )                        
                 else:
                     break
