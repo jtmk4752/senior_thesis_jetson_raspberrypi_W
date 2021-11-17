@@ -58,7 +58,6 @@ class SocketServer():
         GPIO.cleanup()
 
 
-
     # クライアントごとにThread起動する関数
     def conn_client(self, client_socket, address):
         
