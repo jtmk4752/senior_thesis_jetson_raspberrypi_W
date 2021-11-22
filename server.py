@@ -81,5 +81,5 @@ class SocketServer():
         print('[{0}] disconnect client -> address : {1}'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), address) )
 
 if __name__ == "__main__":
-    cmd = subprocess.Popen(["raspivid -t 0 -w 1024 -h 768 -fps 5 -b 2000000 -awb auto -n -o - | gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! tcpserversink host=0.0.0.0 port=8554"])
+    cmd = subprocess.Popen(["raspivid -t 0 -w 1024 -h 768 -fps 5 -b 2000000 -awb auto -n -o - | gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! tcpserversink host=0.0.0.0 port=8554"],shell=True)
     SocketServer(HOST_IP, PORT).run_server()
