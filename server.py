@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 import time
 import subprocess
 
-HOST_IP = "192.168.200.2" # サーバーのIPアドレス
+HOST_IP = "0.0.0.0" # サーバーのIPアドレス
 PORT = 9979 # 使用するポート
 CLIENTNUM = 3 # クライアントの接続上限数
 DATESIZE = 1024 # 受信データバイト数
